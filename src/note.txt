@@ -1,0 +1,41 @@
+Around Web Features:
+    1. Login <-> persistent login
+    2. Logout
+    3. Register
+    4. Display posts: images / videos
+    5. Search by all / keyword / user
+    6. Create a new post: image / video
+
+Pages:
+    // ? How to navigate?
+    1. Login
+    2. Register
+    3. Home
+
+UI Components:
+    1. Header (TopBar)
+    2. Login
+    3. Register
+    4. Home
+        4.1 Search
+        4.2 Display (list)
+        4.3 Upload
+
+Data Communication:
+                                            s <-> s needs LCA
+                                            state: isLoggedIn
+                           App              cbfn: handleLogin
+                                            cbfn2: handleLogout
+                      /           \
+                TopBar             Main    (cbfn)
+         (state: isLoggedIn)
+         fn: handleLogout
+                              /     |      \
+                          Login  Register  Home
+                    (cbfn ->isLoggedIn)
+                            |
+                          Server (returns token)
+
+    1. Login sends a request to Server, Server returns a token to Login
+    2. Through App's cbfn, Login sends (token) to Main, Main sends (token) back to App
+    3. App updates (state: isLoggedIn), then sends (state: isLoggedIn) to TopBar
