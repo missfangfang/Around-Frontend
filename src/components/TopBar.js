@@ -5,6 +5,7 @@ import { LogoutOutlined } from '@ant-design/icons';
 
 function TopBar(props) {
     const { isLoggedIn, handleLogout } = props;
+
     return (
         <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />

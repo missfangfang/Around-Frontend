@@ -2,12 +2,24 @@ import React, { useState } from 'react';
 import TopBar from "./TopBar";
 import Main from "./Main";
 import '../styles/App.css';
+import { TOKEN_KEY } from "../constants";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(
+        localStorage.getItem(TOKEN_KEY) ? true : false
+    );
+
     const logout = () => {
         console.log("Logout");
+        localStorage.removeItem(TOKEN_KEY);
         setIsLoggedIn(false);
+    }
+
+    const loggedIn = token => {
+        if (token) {
+            localStorage.setItem(TOKEN_KEY, token);
+            setIsLoggedIn(true);
+        }
     }
 
     return (
@@ -16,7 +28,10 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 handleLogout={logout}
             />
-            <Main />
+            <Main
+                handleLoggedIn={loggedIn}
+                isLoggedIn={isLoggedIn}
+            />
         </div>
     );
 }

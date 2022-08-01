@@ -30,12 +30,18 @@ Data Communication:
                 TopBar             Main    (cbfn)
          (state: isLoggedIn)
          fn: handleLogout
-                              /     |      \
-                          Login  Register  Home
-                    (cbfn ->isLoggedIn)
-                            |
-                          Server (returns token)
+                              /        |           \
+                          Login      Register         Home
+                    (cbfn ->isLoggedIn)                |       \
+                            |                   SearchBar      Posts
+                   Server (returns token)      /     |
+                                        SContext   SType
 
     1. Login sends a request to Server, Server returns a token to Login
     2. Through App's cbfn, Login sends (token) to Main, Main sends (token) back to App
     3. App updates (state: isLoggedIn), then sends (state: isLoggedIn) to TopBar
+
+Page Navigation (components) Using React-Router:
+    1. <Link> - use in the return section of component
+    2. history
+    3. <Redirect>
