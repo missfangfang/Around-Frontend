@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from "../assets/images/logo.svg";
-
 import { LogoutOutlined } from '@ant-design/icons';
 
 function TopBar(props) {

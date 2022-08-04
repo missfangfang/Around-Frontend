@@ -1,10 +1,9 @@
 import React from 'react';
-import { Route, Switch } from "react-router"
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
-import { Redirect } from "react-router-dom";
 
 function Main(props) {
     const { isLoggedIn, handleLoggedIn } = props;

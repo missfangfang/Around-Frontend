@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Input, message } from 'antd';
 import axios from "axios";
+
 import { BASE_URL } from "../constants";
 
 const formItemLayout = {
@@ -53,15 +54,15 @@ function Register(props) {
                 console.log(response)
                 // Case 1: register successful
                 if (response.status === 200) {
-                    message.success('Registration successful');
-                    props.history.push('/login');
+                    message.success("Registration successful");
+                    props.history.push("/login");
                 }
             })
             .catch (error => {
-                console.log('Register failed: ', error.message);
-                message.success('Registration failed');
+                console.log("Registration failed: ", error.message);
+                message.success("Registration failed");
                 // Throw new Error('Registration failed')
-            })
+            });
     };
 
     return (
@@ -78,7 +79,7 @@ function Register(props) {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Username',
+                        message: 'Please input your username',
                     },
                 ]}
             >
@@ -115,7 +116,7 @@ function Register(props) {
                                 return Promise.resolve();
                             }
                             return Promise.reject('The two passwords that you entered do not match');
-                        },
+                        }
                     }),
                 ]}
             >

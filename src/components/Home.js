@@ -26,13 +26,13 @@ function Home(props) {
         fetchPost(searchOption); // Fetch posts from the server
     }, [searchOption]);
 
-    const fetchPost = (option) => {
+    const fetchPost = option => {
         // Step 1: get search type / search context
         // Step 2: fetch posts from the server
         // Step 3: analyze response from the server
         // Case 1: success -> display posts => images / video
         // Case 2: failed -> inform user
-        const {type, keyword} = option;
+        const { type, keyword } = option;
         let url = "";
 
         if (type === SEARCH_KEY.all) {
@@ -85,8 +85,8 @@ function Home(props) {
                         thumbnail: image.url,
                         thumbnailWidth: 300,
                         thumbnailHeight: 200
-                    }
-                })
+                    };
+                });
             return <PhotoGallery images={imageArr}/>
         } else if (type === "video") {
             return (
@@ -95,14 +95,8 @@ function Home(props) {
                         .filter(post => post.type === "video")
                         .map(post => (
                             <Col span={8} key={post.url}>
-                                <video
-                                    src={post.url}
-                                    controls={true}
-                                    className="video-block"
-                                ></video>
-                                <p>
-                                    {post.user}: {post.message}
-                                </p>
+                                <video src={post.url} controls={true} className="video-block" />
+                                <p>{post.user}: {post.message}</p>
                             </Col>
                         ))}
                 </Row>
@@ -112,7 +106,7 @@ function Home(props) {
 
     const handleSearch = option => {
         // console.log('Option = ', option);
-        const {type, keyword} = option;
+        const { type, keyword } = option;
         setSearchOption({type: type, keyword: keyword});
     };
 
@@ -121,10 +115,7 @@ function Home(props) {
         setActiveTab(type);
         // Reload
         setTimeout(() => {
-            setSearchOption({
-                type:SEARCH_KEY.all,
-                keyword: ""
-            });
+            setSearchOption({type:SEARCH_KEY.all, keyword: ""});
         }, 3000);
     };
 
@@ -133,19 +124,21 @@ function Home(props) {
     return (
         <div className="home">
             <SearchBar handleSearch={handleSearch}/>
-            <Tabs
-                onChange={key => setActiveTab(key)}
-                defaultActiveKey="image"
-                activeKey={activeTab}
-                tabBarExtraContent={operations}
-            >
-                <TabPane tab="Images" key="image">
-                    {renderPosts("image")}
-                </TabPane>
-                <TabPane tab="Videos" key="video">
-                    {renderPosts("video")}
-                </TabPane>
-            </Tabs>
+            <div className="display">
+                <Tabs
+                    onChange={key => setActiveTab(key)}
+                    defaultActiveKey="image"
+                    activeKey={activeTab}
+                    tabBarExtraContent={operations}
+                >
+                    <TabPane tab="Images" key="image">
+                        {renderPosts("image")}
+                    </TabPane>
+                    <TabPane tab="Videos" key="video">
+                        {renderPosts("video")}
+                    </TabPane>
+                </Tabs>
+            </div>
         </div>
     );
 }

@@ -10,28 +10,23 @@ function App() {
     );
 
     const logout = () => {
-        console.log("Logout");
         localStorage.removeItem(TOKEN_KEY);
         setIsLoggedIn(false);
+        console.log("Logout successful");
     }
 
     const loggedIn = token => {
         if (token) {
             localStorage.setItem(TOKEN_KEY, token);
             setIsLoggedIn(true);
+            console.log("Login successful");
         }
     }
 
     return (
         <div className="App">
-            <TopBar
-                isLoggedIn={isLoggedIn}
-                handleLogout={logout}
-            />
-            <Main
-                handleLoggedIn={loggedIn}
-                isLoggedIn={isLoggedIn}
-            />
+            <TopBar isLoggedIn={isLoggedIn} handleLogout={logout} />
+            <Main handleLoggedIn={loggedIn} isLoggedIn={isLoggedIn} />
         </div>
     );
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, message } from "antd";
-import { PostForm } from "./PostForm";
 import axios from "axios";
+
+import { PostForm } from "./PostForm";
 import { BASE_URL, TOKEN_KEY } from "../constants";
 
 class CreatePostButton extends Component {
@@ -15,14 +16,14 @@ class CreatePostButton extends Component {
     };
 
     handleOk = () => {
-        this.setState({visible: false});
+        this.setState({confirmLoading: true});
         // Step 1: get values from the form
         // Step 2: upload posts to the server
         this.postForm
             .validateFields()
             .then(form => {
-                const {description, uploadPost} = form;
-                const {type, originFileObj} = uploadPost[0];
+                const { description, uploadPost } = form;
+                const { type, originFileObj } = uploadPost[0];
                 const postType = type.match(/^(image|video)/g)[0];
 
                 // If the file type is allowed to be uploaded by backend
@@ -52,8 +53,8 @@ class CreatePostButton extends Component {
                                 message.success("The image or video is uploaded.");
                                 this.postForm.resetFields();
                                 this.handleCancel();
-                                this.setState({confirmLoading: false});
                                 this.props.onShowPost(postType);
+                                this.setState({confirmLoading: false});
                             }
                         })
                         .catch(err => {
@@ -69,12 +70,12 @@ class CreatePostButton extends Component {
         };
 
         handleCancel = () => {
+            console.log("Upload canceled");
             this.setState({visible: false});
         };
 
-        render()
-        {
-            const {visible, confirmLoading} = this.state;
+        render() {
+            const { visible, confirmLoading } = this.state;
 
             return (
                 <div>
@@ -84,8 +85,9 @@ class CreatePostButton extends Component {
                     <Modal
                         title="Create New Post"
                         visible={visible}
-                        confirmLoading={confirmLoading}
                         onOk={this.handleOk}
+                        okText="Create"
+                        confirmLoading={confirmLoading}
                         onCancel={this.handleCancel}
                     >
                         <PostForm ref={refInstance => this.postForm = refInstance}/>

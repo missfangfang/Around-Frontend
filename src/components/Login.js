@@ -7,6 +7,8 @@ import axios from "axios";
 import {BASE_URL} from "../constants";
 
 function Login(props) {
+    const { handleLoggedIn } = props;
+
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
         // Step 1: get username/password from the form
@@ -30,9 +32,9 @@ function Login(props) {
                 if (res.status === 200) {
                     // 200 = frontend and backend's data communication is OK
                     // Backend returns res to frontend
+                    // console.log(res.data);
                     const { data } = res;
-                    console.log(data);
-                    props.handleLoggedIn(data);
+                    handleLoggedIn(data);
                     message.success("Login successful");
                 }
             })
@@ -49,7 +51,7 @@ function Login(props) {
                 rules={[
                     {
                         required: true,
-                        message: "Please input your Username"
+                        message: "Please input your username"
                     }
                 ]}
             >
@@ -64,7 +66,7 @@ function Login(props) {
                 rules={[
                     {
                         required: true,
-                        message: "Please input your Password!"
+                        message: "Please input your password"
                     }
                 ]}
             >
