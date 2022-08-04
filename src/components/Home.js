@@ -126,6 +126,7 @@ function Home(props) {
             <SearchBar handleSearch={handleSearch}/>
             <div className="display">
                 <Tabs
+                    className="tabs"
                     onChange={key => setActiveTab(key)}
                     defaultActiveKey="image"
                     activeKey={activeTab}
