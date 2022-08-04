@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { Col, message, Row, Tabs, Button } from "antd";
+import { Col, message, Row, Tabs } from "antd";
 
 import SearchBar from "./SearchBar";
 import PhotoGallery from "./PhotoGallery";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Gallery from 'react-grid-gallery';
-import { Button, message } from 'antd';
+import { message } from 'antd';
 import { DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 

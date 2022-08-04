@@ -20,7 +20,7 @@ function SearchBar(props) {
 
     const handleSearch = value => {
         // Case 1: search input is empty
-        if (searchType != SEARCH_KEY.all && value === "") {
+        if (searchType !== SEARCH_KEY.all && value === "") {
             setError("Please input your search keyword");
             return;
         }
