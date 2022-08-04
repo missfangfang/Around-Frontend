@@ -3,22 +3,22 @@ import { Input, Radio } from "antd";
 
 import { SEARCH_KEY } from "../constants";
 
-const { Search } = Input;
+const {Search} = Input;
 
 function SearchBar(props) {
-    const [ searchType, setSearchType ] = useState(SEARCH_KEY.all);
-    const [ error, setError ] = useState("");
+    const [searchType, setSearchType] = useState(SEARCH_KEY.all);
+    const [error, setError] = useState("");
 
-    const changeSearchType = (e) => {
+    const changeSearchType = e => {
         const searchType = e.target.value;
         setSearchType(searchType);
         setError("");
-        // if (searchType === SEARCH_KEY.all) {
-        //     props.handleSearch({ type: searchType, keyword: "" });
-        // }
+        if (searchType === SEARCH_KEY.all) {
+            props.handleSearch({ type: searchType, keyword: "" });
+        }
     }
 
-    const handleSearch = (value) => {
+    const handleSearch = value => {
         // Case 1: search input is empty
         if (searchType != SEARCH_KEY.all && value === "") {
             setError("Please input your search keyword");
@@ -26,6 +26,7 @@ function SearchBar(props) {
         }
         // Case 2: search input is not empty
         setError("");
+        props.handleSearch({type: searchType, keyword: value});
     }
 
     return (

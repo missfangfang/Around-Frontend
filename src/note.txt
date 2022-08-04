@@ -31,9 +31,9 @@ Data Communication:
          (state: isLoggedIn)
          fn: handleLogout
                               /        |           \
-                          Login      Register         Home
+                          Login      Register         Home          (needs SContext and SType)
                     (cbfn ->isLoggedIn)                |       \
-                            |                   SearchBar      Posts
+                            |                   SearchBar   PhotoGallery
                    Server (returns token)      /     |
                                         SContext   SType
 
